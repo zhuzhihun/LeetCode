@@ -62,12 +62,7 @@ public class DFS {
         }
     }
 
-    public static void main(String[] args) {
-        DFS dfs = new DFS();
-        //int[] n = {1,2,3};
-        List<List<String>> res = dfs.solveNQueens(4);
-        System.out.println(res.toString());
-    }
+
     /* code.51 hard
     n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
      */
@@ -144,6 +139,152 @@ public class DFS {
                  p--;
              }
             k++;
+        }
+    }
+    /*
+    code.77组合
+    给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
+输入: n = 4, k = 2
+输出:
+[ [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]*/
+
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> list=new ArrayList<>();
+        boolean[] used = new boolean[n];
+        combineDFS(used,res,list,n,k,0);
+        return res;
+        //此方法耗时很长
+    }
+
+    private void combineDFS(boolean[] used,List<List<Integer>> res,List<Integer> list ,int n, int k,int sum) {
+        if (sum==k){
+            //添加新的组合是必须用new 来取代 用list会将所有结果都指向同一个
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            int old;
+            if(list.size()==0){
+                old=0;
+            }else{
+                old = list.get(list.size()-1);
+            }
+
+            if (!used[i]&&i+1>old){
+                //代表当前【i】没有用过
+                used[i]=true;
+                list.add(i+1);
+                combineDFS(used, res, list, n, k, sum+1);
+                used[i]=false;
+                list.remove(list.size()-1);
+            }
+        }
+    }
+    /*
+    更新code77. 组合问题
+     */
+    List<List<Integer>> ans=new ArrayList<>();
+    ArrayList<Integer> list=new ArrayList<>();
+    public List<List<Integer>> combine77(int n, int k) {
+        newDFS77(n,k,1);
+        return ans;
+    }
+    void newDFS77(int n,int k,int start){
+        if(list.size()==k){
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i=start;i<=n;i++){
+            //如果当前temp 的大小为 s，
+            // 未确定状态的区间 [cur,n] 的长度为 t，
+            // 如果 s + t < k，那么即使 t个都被选中，
+            // 也不可能构造出一个长度为 k的序列
+            // 剪枝：temp 长度加上区间 [cur, n] 的长度小于 k，不可能构造出长度为 k 的 temp
+            if(list.size()+n-i+1<k){
+                break;
+            }
+            list.add(i);
+            newDFS77(n,k,i+1);
+            list.remove(list.size()-1);
+        }
+    }
+    /* code.78
+    给你一个整数数组 nums ，返回该数组所有可能的子集（幂集）。解集不能包含重复的子集。
+
+    输入：nums = [1,2,3]
+    输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+         */
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans=new ArrayList<>();
+        ArrayList<Integer> list=new ArrayList<>();
+        //ans.add(new ArrayList<>(list));
+        subsetsDFS(ans,nums,list,0);
+        return ans;
+    }
+
+    private void subsetsDFS(List<List<Integer>> ans, int[] nums, ArrayList<Integer> list,int start) {
+        if (start<nums.length){
+            if (!ans.contains(new ArrayList<>(list)))
+                ans.add(new ArrayList<>(list));
+        }
+        for (int i = start; i < nums.length; i++) {
+
+            list.add(nums[i]);
+            subsetsDFS(ans, nums, list, i+1);
+            list.remove(list.size()-1);
+
+        }
+    }
+
+    public static void main(String[] args) {
+        DFS dfs = new DFS();
+        int[] n = {1,2,3};
+        List<List<Integer>> res = dfs.subsets(n);
+        System.out.println(res.toString());
+    }
+    /*code.90
+    给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+    解集不能包含重复的子集。
+需要先进行排序
+输入: [1,2,2]
+输出:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+     */
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> ans=new ArrayList<>();
+        ArrayList<Integer> list=new ArrayList<>();
+        Arrays.sort(nums);
+        //ans.add(new ArrayList<>(list));
+        subsetsWithDupDFS(ans,nums,list,0);
+        return ans;
+    }
+
+    private void subsetsWithDupDFS(List<List<Integer>> ans, int[] nums, ArrayList<Integer> list,int start) {
+        if (start<=nums.length){
+            //if (!ans.contains(new ArrayList<>(list)))
+            ans.add(new ArrayList<>(list));
+        }
+        for (int i = start; i < nums.length; i++) {
+            if(i>start&&nums[i]==nums[i-1]){
+                continue;
+            }
+            list.add(nums[i]);
+            subsetsDFS(ans, nums, list, i+1);
+            list.remove(list.size()-1);
         }
     }
 }
