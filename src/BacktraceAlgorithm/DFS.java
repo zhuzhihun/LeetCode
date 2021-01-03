@@ -1,4 +1,4 @@
-package DataStructure;
+package BacktraceAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
