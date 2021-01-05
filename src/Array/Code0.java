@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 
 public class Code0 {
+    /*
+    将String类型中的空格转化为 %20
+     */
     public static String replaceSpace(String s){
         StringBuilder res = new StringBuilder();
         for(Character c:s.toCharArray()){
@@ -16,6 +19,11 @@ public class Code0 {
 
         return res.toString();
     }
+    /*
+    反向输出 链表
+    输入 ： 头结点
+    输出 ： int[]
+     */
     public static int[] reversrePrint(ListNode head){
         LinkedList<Integer> stack = new LinkedList<Integer>();
         while (head!=null){
