@@ -1,6 +1,86 @@
 package MathOperationKills;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 public class BitOperation {
+    /*code448找到所有数组中消失的数字
+给定一个范围在  1 ≤ a[i] ≤ n ( n = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。
+找到所有在 [1, n] 范围之间没有出现在数组中的数字。
+您能在不使用额外空间且时间复杂度为O(n)的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。
+     */
+    //对于异或运算（^），我们知道它有一个特殊性质：一个数和它本身做异或运算结果为 0，一个数和 0 做异或运算还是它本身。
+    //而且异或运算满足交换律和结合律，也就是说：
+    //2 ^ 3 ^ 2 = 3 ^ (2 ^ 2) = 3 ^ 0 = 3
+
+    //让每个索引减去其对应的元素，再把相减的结果加起来，不就是那个缺失的元素
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+//        int n = nums.length;
+//        int res = 0;
+//        // 新补的索引
+//        res += n - 0;
+//        // 剩下索引和元素的差加起来
+//        for (int i = 0; i < n; i++)
+//            res += i - nums[i];
+//        return res;
+
+        // Hash table for keeping track of the numbers in the array
+        // Note that we can also use a set here since we are not
+        // really concerned with the frequency of numbers.
+        HashMap<Integer, Boolean> hashTable = new HashMap<Integer, Boolean>();
+
+        // Add each of the numbers to the hash table
+        for (int i = 0; i < nums.length; i++) {
+            hashTable.put(nums[i], true);
+        }
+
+        // Response array that would contain the missing numbers
+        List<Integer> result = new LinkedList<Integer>();
+
+        // Iterate over the numbers from 1 to N and add all those
+        // that don't appear in the hash table.
+        for (int i = 1; i <= nums.length; i++) {
+            if (!hashTable.containsKey(i)) {
+                result.add(i);
+            }
+        }
+
+        return result;
+    }
+    //空间复杂度：O(1)，因为我们在原地修改数组，没有使用额外的空间。
+    public List<Integer> findDisappearedNumbersForNspace(int[] nums) {
+
+        // Iterate over each of the elements in the original array
+        for (int i = 0; i < nums.length; i++) {
+
+            // Treat the value as the new index
+            int newIndex = Math.abs(nums[i]) - 1;
+
+            // Check the magnitude of value at this new index
+            // If the magnitude is positive, make it negative
+            // thus indicating that the number nums[i] has
+            // appeared or has been visited.
+            if (nums[newIndex] > 0) {
+                nums[newIndex] *= -1;
+            }
+        }
+
+        // Response array that would contain the missing numbers
+        List<Integer> result = new LinkedList<Integer>();
+
+        // Iterate over the numbers from 1 to N and add all those
+        // that have positive magnitude in the array
+        for (int i = 1; i <= nums.length; i++) {
+
+            if (nums[i - 1] > 0) {
+                result.add(i);
+            }
+        }
+
+        return result;
+    }
+
     /*
 编写一个函数，输入是一个无符号整数（以二进制串的形式），
 返回其二进制表达式中数字位数为 '1' 的个数（也被称为汉明重量）。
@@ -65,6 +145,21 @@ public class BitOperation {
             return n > 0 && (n & (n - 1)) == 0;
         }
     }
+    /*
+    给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+
+ 一个数和它本身做异或运算结果为 0，即 a ^ a = 0；一个数和 0 做异或运算的结果为它本身，即 a ^ 0 = a。
+对于这道题目，我们只要把所有数字进行异或，成对儿的数字就会变成 0
+，落单的数字和 0 做异或还是它本身，所以最后异或的结果就是只出现一次的元素：
+     */
+
+    public int singleNumber(int[] nums) {
+        int res = 0;
+        for (int n : nums) {
+            res ^= n;
+        }
+        return res;
+    }
 
     //位操作计算
     public static void main(String[] args) {
@@ -78,6 +173,9 @@ public class BitOperation {
             ('d' ^ ' ') = 'D'
             ('D' ^ ' ') = 'd'
      */
+        int[] aa = {5,4,3,2,1,2,1,2,2,5,4,8,8,9,9,10,5,6,6,5,10};
+        BitOperation bitOperation = new BitOperation();
+        bitOperation.singleNumber(aa);
         char a = 'a' | ' ';
         char b ='A' | ' ';
         char c ='b' & '_';
