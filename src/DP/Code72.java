@@ -1,6 +1,6 @@
 package DP;
 
-public class Code72 {
+public class   Code72 {
     Node[][] dp;
     public Node[][] minDistance(String word1,String word2){
         int m=word1.length(),n=word2.length();
