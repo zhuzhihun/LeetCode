@@ -1,6 +1,8 @@
 import sun.reflect.generics.tree.Tree;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 class ListNode{//链表
     int val;      //节点值
@@ -137,6 +139,7 @@ public class Code {
 
     //散列表  散列表是一种非线性数据结构，通过利用 Hash 函数将指定的「键 key」映射至对应的「值 value」，以实现高效的元素查找。
         Map<String ,Integer> map = new HashMap<>();
+        Map<Object, Object> objectObjectConcurrentHashMap = new ConcurrentHashMap<>();
         //添加 key->value键值对
         map.put("A",1);
         map.put("B",2);
@@ -262,6 +265,7 @@ public class Code {
         // BST 最左边的就是最小的
         while (node.left != null) node = node.left;
         return node;
+
     }
 
 }
