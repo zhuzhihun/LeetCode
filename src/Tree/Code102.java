@@ -123,6 +123,7 @@ public class Code102 {
 
     }
     //106 从中序与后序遍历序列构造二叉树
+
     public TreeNode buildTree1(int[] inorder, int[] postorder){
         int inLength = inorder.length;
         int postLength = postorder.length;

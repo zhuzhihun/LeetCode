@@ -1,14 +1,14 @@
 package Thread;
 
+import java.util.HashSet;
+import java.util.Iterator;
+
 public class Test {
     public static void main(String[] args) {
-        MyList myList = new MyList();
+        int[] nums={};
 
-        ThreadA a = new ThreadA(myList);
-        a.setName("A");
-        a.start();
-        ThreadB b = new ThreadB(myList);
-        b.setName("B");
-        b.start();
+
+
+
     }
 }
