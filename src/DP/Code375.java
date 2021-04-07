@@ -5,15 +5,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/*
-* 我们正在玩一个猜数游戏，游戏规则如下：
 
-我从 1 到 n 之间选择一个数字，你来猜我选了哪个数字。
-
-每次你猜错了，我都会告诉你，我选的数字比你的大了或者小了。
-
-然而，当你猜了数字 x 并且猜错了的时候，你需要支付金额为 x 的现金。直到你猜到我选的数字，你才算赢得了这个游戏。
-*/
 public class Code375 {
     public int get(int a[],int b[],int n){//n为偶数
         //找三张牌 i<j<k
@@ -37,35 +29,7 @@ public class Code375 {
         return min;
     }
 
-    public int getDP(int a[],int b[],int n){//n为偶数
-        //找三张牌 i<j<k
-        //a[i]<=a[j]<=a[k]
-        //求b[i]+b[j]+b[k]最小
-        if (n<3) return -1;
-        int dp[][][]=new int[n][n][n];
 
-        int min=Integer.MAX_VALUE;
-        for (int i = 0; i < n-2; i++) {
-            for (int j = i+1; j < n-1; j++) {
-                if (a[i]<=a[j]){
-                    dp[i][j][0]=b[i]+b[j];
-                }
-            }
-        }
-        for (int i = 0; i < n-2; i++) {
-            for (int j = i+1; j < n-1; j++) {
-                if (dp[i][j][0]!=0){
-                    for (int k = j; k < n; k++) {
-
-                    }
-                }
-            }
-        }
-        if (min==Integer.MAX_VALUE){
-            return -1;
-        }
-        return min;
-    }
 
     public static void main(String[] args) throws MalformedURLException {
         URL uel = new URL("http://www.baidu.com");
@@ -108,7 +72,15 @@ public class Code375 {
         return temp;
     }
 
+    /*
+    * 我们正在玩一个猜数游戏，游戏规则如下：
 
+    我从 1 到 n 之间选择一个数字，你来猜我选了哪个数字。
+
+    每次你猜错了，我都会告诉你，我选的数字比你的大了或者小了。
+
+    然而，当你猜了数字 x 并且猜错了的时候，你需要支付金额为 x 的现金。直到你猜到我选的数字，你才算赢得了这个游戏。
+    */
     public int getMoneyAmount(int n){
         int money = cost(1, n);
         return money;

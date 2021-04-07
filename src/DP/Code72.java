@@ -1,11 +1,17 @@
 package DP;
 
 public class   Code72 {
+    public double myPow(double x, int n) {
+        System.out.println(Math.pow(x, n));
+        return Math.pow(x,n);
+    }
+
     Node[][] dp;
     public Node[][] minDistance(String word1,String word2){
         int m=word1.length(),n=word2.length();
         //构建m+1*n+1的初始化数组
         dp= new Node[m + 1][n + 1];
+        System.out.println(dp.length);
         //将基础数据填写
         dp[0][0]=new Node(0,0);
         for (int i = 1; i <= m; i++) {
@@ -72,7 +78,7 @@ public class   Code72 {
         public void setChioce(int chioce) {
             this.chioce = chioce;
         }
-// 0 代表啥都不做
+        // 0 代表啥都不做
         // 1 代表插入
         // 2 代表删除
         // 3 代表替换
