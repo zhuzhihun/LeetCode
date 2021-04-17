@@ -1,4 +1,7 @@
+package DP;
+
 public class Code42 {
+    //接雨水问题  永远的痛
     public int trap(int[] height){
         int length = height.length;
         int sum=0;

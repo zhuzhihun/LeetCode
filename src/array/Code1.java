@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Arrays;
+
 public class Code1 {
     int index = 0;
     /*
@@ -46,11 +48,14 @@ public class Code1 {
         //之后遇到的小数点 e 都是返回false
         return flag && s.charAt(index)=='|';
     }
+
+
+
     /*code.1
 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 的那 两个 整数，并返回它们的数组下标。
 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
 你可以按任意顺序返回答案。
-     */
+     *///第二题
     public int[] twoSum(int [] nums,int target){
         int[] indxs = new int[2];
         for (int i = 0; i <nums.length-1 ; i++) {
@@ -67,10 +72,39 @@ public class Code1 {
     }
     public static void main(String[] args) {
         String s = "+1";
-        Code1 code1=new Code1();
-
-
-        boolean b = code1.isNumber(s);
-        System.out.println(b);
+        int a[]={1,2,1,5,1};
+        System.out.println(minElements(a));
+        //System.out.println(b);
     }
+    public static int minElements(int[] arr) {
+    // write your code here
+        Arrays.sort(arr);
+        int sum=0;
+        for(int i=0;i<arr.length;i++) {
+            sum+=arr[i];
+        }
+        int min =sum;
+        int mid = (sum)/2+1;
+        //找到一半
+        int count =0;
+        int i=0,j=arr.length;
+        for (int k = mid; k < sum; k++) {
+
+        }
+        return count;
+  }
+  public static int getMinK(int[] nums,int k){
+        int sum=0;
+        int max=0;
+
+        for (int i = 0; i < nums.length; i++) {
+          sum+=nums[i];
+          max=Math.max(max,nums[i]);
+        }
+        for (int i = max; ; i++) {
+            if (max*nums.length>sum){
+                return i;
+            }
+        }
+  }
 }

@@ -154,6 +154,46 @@ public class Tencent {
     //==============================================================
     //5.砝码问题.给定目标值m(可以是n*m).判断砝码个数最少满足要求(01背包).
 
+
+
+    //==============================================================
+    //给你一个数组 nums，有一个长度为 k 的窗口从最左端滑动到最右端。窗口中有 k 个数，每次窗口向右移动 1 位。你的任务是找出每次窗口移动后得到的新窗口中元素的中位数，并输出由它们组成的数组。
+    //力扣 480 hard
+
+    public static double[] get(int[] a,int k){
+        double[] res = new double[a.length-k+1];
+        if(k>a.length){
+            return new double[0];
+        }
+        double arr[]=new double[k];
+        for (int i = 0; i < k; i++) {
+            arr[i]=a[i];//存放初始窗口
+
+        }
+        Arrays.sort(arr);
+        if (k%2==0){
+            res[0]=((arr[k/2]+(arr[k/2-1])/2.0));
+        }
+        else{
+            res[0]=(arr[k/2]);
+        }
+        for (int i = 1; i < a.length-k+1; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j]==a[i-1]){
+                    arr[j]=a[i+k-1];
+                    break;
+                }
+            }
+            Arrays.sort(arr);
+            if (k%2==0){//偶数
+                res[i]=(arr[k/2]+arr[k/2-1])/2.0;
+            }
+            else{
+                res[i]=arr[k/2];
+            }
+        }
+        return res;
+    }
 }
 
 

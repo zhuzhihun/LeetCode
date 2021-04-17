@@ -3,7 +3,7 @@ package algorithmTest;
 import java.util.Stack;
 
 public class Test {
-    public int compress (int[] m) {
+    public static int compress (int[] m) {
         // write code here
         int a[] = new int[m.length+1];
         a[0]=0;
@@ -15,5 +15,10 @@ public class Test {
             }
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        int a[]= {1,2,-1,1,-1};
+        System.out.println(compress(a));
     }
 }
