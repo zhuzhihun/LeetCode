@@ -1,9 +1,5 @@
 package DP;
 
-import com.sun.org.apache.regexp.internal.RE;
-import org.jetbrains.annotations.NotNull;
-import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -12,9 +8,9 @@ import java.util.Stack;
 public class AllDp {
     public static void main1(String[] args) {
         char[][] matrix={{'1','0','1','0','0'},
-                {'1','0','1','1','1'},
-                {'1','1','1','1','1'},
-                {'1','0','1','1','0'}};
+                         {'1','0','1','1','1'},
+                         {'1','1','1','1','1'},
+                         {'1','0','1','1','0'}};
         System.out.println("4:"+maximalSquare(matrix));
         //4
         String s="bbbab";
