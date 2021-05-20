@@ -1,14 +1,15 @@
 public class Singleton {
-    private static Singleton singleton;
-    public Singleton(){}
-    private static Singleton getInstance(){
-        if (singleton==null){
-            synchronized (Singleton.class){
-                if (singleton==null){
-                    singleton = new Singleton();
+    private volatile static Singleton instance; //声明成 volatile
+    private Singleton (){}
+
+    public static Singleton getSingleton() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
                 }
             }
         }
-        return singleton;
+        return instance;
     }
 }

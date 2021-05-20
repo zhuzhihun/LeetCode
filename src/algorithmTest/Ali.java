@@ -51,14 +51,3 @@ public class Ali {
 
 
 }
-class four{
-    public static void main(String[] args) {
-        int a[] = {1,3,4,5,2};
-    }
-    public static int getKDin(int a[]){
-
-
-
-        return 1;
-    }
-}

@@ -1,6 +1,6 @@
 package algorithmTest;
 
-
+//连通图判断
 public class DFSLT {
 
     /**
@@ -29,14 +29,14 @@ public class DFSLT {
 
         int s = Integer.MAX_VALUE;
         int G[][] = {{s, s, s, s, s, s, s, s, s},
-                {s, s, s, s, s, s, s, s, s},
-                {s, s, s, s, 1, 1, s, s, s},
-                {s, s, s, s, s, s, 1, 1, s},
-                {s, s, 1, s, s, s, s, s, 1},
-                {s, s, 1, s, s, s, s, s, 1},
-                {s, s, s, 1, s, s, s, 1, s},
-                {s, s, s, 1, s, s, 1, s, s},
-                {s, s, s, s, 1, 1, s, s, s}};
+                     {s, s, s, s, s, s, s, s, s},
+                     {s, s, s, s, 1, 1, s, s, s},
+                     {s, s, s, s, s, s, 1, 1, s},
+                     {s, s, 1, s, s, s, s, s, 1},
+                     {s, s, 1, s, s, s, s, s, 1},
+                     {s, s, s, 1, s, s, s, 1, s},
+                     {s, s, s, 1, s, s, 1, s, s},
+                     {s, s, s, s, 1, 1, s, s, s}};
         color = new int[9];
 
         ProcedureDFS(G, 9);
@@ -92,6 +92,4 @@ public class DFSLT {
             }
         }
     }
-
-
 }

@@ -159,7 +159,7 @@ class Main04{
 //==============================================================
     //5.两个数组  按顺序拿 a[i]与b[i]代表甜度 前N的最大甜度,前缀数组
     class Main05{
-        public static void main(String[] args){
+        public static void main5(String[] args){
             Scanner sc = new Scanner(System.in);
             String[] s = sc.nextLine().split(" ");
             int n = Integer.parseInt(s[0]);
@@ -191,6 +191,142 @@ class Main04{
 
 
         }
+//============================================================//
+    //美团5.9
+    public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+    }
+    public static void main2(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < t; i++) {
+            int x = sc.nextInt();//初始值
+            int a = sc.nextInt();//下降值
+            int b = sc.nextInt();//上升值
+            int n = sc.nextInt();
+            int max=0;
+            int[][][] dp = new int[n+1][2][2];
+            dp[0][0][0]=x;//0代表 休息 1代表联系
+            dp[0][0][1]=0;// 0表示当前状态值 1表示收益
+            dp[0][1][0]=x;
+            dp[0][1][0]=0;
+            for (int j = 1; j < dp.length; j++) {
+                //休息
+                /*
+
+
+                dp[j][0][0]=dp[j-1][0][0]
+                dp[j][0][1]=dp[j-1][0][0]
+                    //练习
+                dp[j][1][0]=dp[j-1][0][1]
+                dp[j][1][0]=dp[j-1][0][0]
+                */
+            }
+
+
+
+        }
+    }
+    public static void main3(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] strings= sc.nextLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int nums[] = new int[n];
+        int m = Integer.parseInt(strings[1]);
+        int h = Integer.parseInt(strings[2]);
+        String[] s = sc.nextLine().split(" ");
+        for (int i = 0; i < n; i++) {
+            nums[i]=Integer.parseInt(s[i]);
+        }
+        int min=-1;
+        for (int i = 0; i <= n-m; i++) {
+            boolean flag =true;
+            for (int j = 0; j < m; j++) {
+                if (nums[i+j]>h){
+                    flag=false;
+                    break;
+                }
+
+            }
+            if (flag){
+                min=i+1;
+                break;
+            }
+        }
+        System.out.println(min);
+    }
+    /*
+    7 3
+    ...
+    **.
+    ...
+    .**
+    ...
+    ***
+     */
+    public static void main1(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] strings= sc.nextLine().split(" ");
+        int row = Integer.parseInt(strings[0]);
+        int loc = Integer.parseInt(strings[1]);
+        char[][] chars = new char[row][loc];
+        for (int i = 0; i < row; i++) {
+            String s = sc.nextLine();
+            chars[i] = s.toCharArray();
+        }
+//        for (int i = 0; i < row; i++) {
+//            for (int j = 0; j < loc; j++) {
+//                System.out.print(chars[i][j]);
+//            }
+//            System.out.println();
+//        }
+
+        getMaxiCountDFS(chars,0,0,1,0,1);
+        System.out.println(sum==Integer.MAX_VALUE? -1:sum);
+
 
     }
+    private static int sum = Integer.MAX_VALUE;
+    public static void getMaxiCountDFS(char[][] chars,int i,int j,int wuqi,int count,int fangxiang){
+        //1代表右  0代表左 2代表左右都行
+        //结束条件
+        if (i>=chars.length||j>=chars[0].length||i<0||j<0)//超出边界
+            return;
+        if (wuqi==0&&chars[i][j]=='*')//遇到无法打破的位置
+            return;
+        if (i==chars.length-1&&j==chars[0].length-1){//到达最后的位置
+            sum = Math.min(sum,count);
+            return;
+        }
+        if (chars[i][j]=='*'){
+            getMaxiCountDFS(chars, i+1, j, wuqi-1, count+1,2);//向下
+            if (fangxiang==0){
+                //从zuo边走
+            }else{
+                getMaxiCountDFS(chars, i, j+1, wuqi-1, count+1,1);//向右
+            }
+
+            if (fangxiang==1){
+                //从右边走
+            }else{
+                getMaxiCountDFS(chars, i, j-1, wuqi, count+1,0);//向左
+            }
+
+        }else{
+            getMaxiCountDFS(chars, i+1, j, wuqi, count+1,2);//向下
+            if (fangxiang==0){
+                //从zuo边走
+            }else{
+                getMaxiCountDFS(chars, i, j+1, wuqi, count+1,1);//向右
+            }
+
+            if (fangxiang==1){
+                //从右边走
+            }else{
+                getMaxiCountDFS(chars, i, j-1, wuqi, count+1,0);//向左
+            }
+        }
+        //不能向上跑
+    }
+}
 

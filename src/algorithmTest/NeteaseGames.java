@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class NeteaseGames {
+public class NeteaseGames {//网易游戏
     public static int getMatchBracketsNum (String inString, int inStringNum) {
     // write code here
     char[] ch = inString.toCharArray();
